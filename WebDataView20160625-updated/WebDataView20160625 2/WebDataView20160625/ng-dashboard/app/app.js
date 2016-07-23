@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module("app", []).run(function($rootScope,selectionContainer){
+var app = angular.module("app", []).run(function($rootScope, selectionContainer){
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         /*console.log("This is a request" + request);
         if(request.selectionData){
@@ -37,6 +37,7 @@ var app = angular.module("app", []).run(function($rootScope,selectionContainer){
         
     });
 
+    //$templateCache.put('field_form.html');
 });
 
 

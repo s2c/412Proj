@@ -11,14 +11,14 @@ $("#drop_down_selection").change(function () {
 		} else if (str == 1) {
 			$("#dom_selection").show();
 			$("#vips_selection").hide();
-			$("#maximal_selection").hide();
+			$("#block_selection").hide();
 		} else if (str == 2) {
 			$("#dom_selection").hide();
 			$("#vips_selection").show();
-			$("#maximal_selection").hide();
+			$("#block_selection").hide();
 		} else if (str == 3) {
 			$("#dom_selection").hide();
 			$("#vips_selection").hide();
-			$("#maximal_selection").show();
+			$("#block_selection").show();
 		}
 });

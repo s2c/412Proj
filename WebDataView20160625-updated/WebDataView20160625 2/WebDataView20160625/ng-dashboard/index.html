@@ -21,7 +21,7 @@
         <option value="0">-- Please select --</option>
         <option value="1">DOM Selection</option>
         <option value="2">VIPS Selection</option>
-        <option value="3">Maximal Selection</option>
+        <option value="3">Block Selection</option>
     </select>
 	</div>
 	<div id="dom_selection" style="display: none;">
@@ -36,7 +36,7 @@
 			</a>
 		</div>
 	</div>
-	<div id="vips_selection" style="display: none;"">
+	<div id="vips_selection" style="display: none;">
 	    <div ng-controller="tagClassChooseCtrl">
 			<a ng-click="vipsHighlightAll()"
 				class='btn btn-small btn-default'>
@@ -58,20 +58,20 @@
 				class='btn btn-small btn-default'>
 				Get Sibling Blocks!
 			</a>
-			<a ng-click="extractNames()"
-				class='btn btn-small btn-default'>
-				Extract Names
-			</a>
 		</div>
 	</div>
-	<div id="maximal_selection" style="display: none;">
-		<div ng-controller="maximalSelectionCtrl">
-			<label for="fields"># of fields:</label>
-			<input id="fields" type="integer" ng-model="fields" />
-			<button type="button" ng-click="displayFields()">Click Me!</button>
-			<!-- Limit clicks --!>
-			<div id="canvas"></div>
-			<button type="button" ng-click="selectBlock()" id="select">Select Blocks!</button>
+	<div id="block_selection" style="display: none;">
+		<div ng-controller="blockSelectionCtrl">
+			<label for="total_fields"># of fields:</label>
+			<input id="total_fields" type="integer" ng-model="total_fields" />
+			<button type="button" ng-click="displayFields()">Generate Fields</button>
+			<button type="button" ng-click="reset()">Reset</button>
+			<!-- Limit clicks -->
+			<div id="field_form" style="display: none;">
+				<p>Enter field names:</p>
+				<p ng-repeat="field in fields track by $index" ng-include="'field_form.html'"></p>
+				<button type="button" id="select"  ng-click="selectBlocks()" >Select Blocks</button>
+			</div>
 		</div>
 	</div>
 	
@@ -81,8 +81,17 @@
 	<script type="text/javascript"
 		src="app/controller/vipsCtrl.js"></script>
 	<script type="text/javascript"
-		src="app/controller/maximalSelectionCtrl.js"></script>
+		src="app/controller/blockSelectionCtrl.js"></script>
 	<script type="text/javascript" src="app/todoStorage.js"></script>
 	<script type="text/javascript" src="app/background.js"></script>
+	<script type="text/ng-template" id="field_form.html">
+		<input type="text" ng-model="field.name" />
+		<select ng-model="field.type">
+			<option value="0">Type (Optional)</option>
+			<option value="1">Text</option>
+			<option value="2">Number</option>
+		</select>
+		<span id="field_selected[{{$index}}]"></span>
+	</script>
 </body>
 </html>
