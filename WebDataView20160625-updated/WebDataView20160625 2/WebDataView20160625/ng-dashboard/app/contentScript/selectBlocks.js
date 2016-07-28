@@ -71,13 +71,16 @@ if (typeof selectDomElement != 'function') {
 
 			    document.body.appendChild(fieldLabel);
 
-			    firstXPath = getPathTo(event.target).split("/");
+			    firstXPath = getPathTo(event.target);//.split("/");
+			    console.log('first' + getPathTo(event.target));
 			    selectionOrder++;
 	    	}
 	    	else {
-	    		var secondXPath = getPathTo(event.target).split("/");
+	    		var secondXPath = getPathTo(event.target);//.split("/");
 
-				var parent = '';
+	    		
+	    		console.log('second' + getPathTo(event.target));
+				/*var parent = '';
 				var i = 1;
 				firstXPath.shift();
 				while((element = firstXPath.shift()) == secondXPath[i]) {
@@ -85,16 +88,33 @@ if (typeof selectDomElement != 'function') {
 					i++;
 				}
 
+
 				var currentNode = element.substr(0, element.indexOf('['));
+				//element.substr(element.indexOf('['), element.indexOf(']'));
 
 				// to do: check if same children
 				var child = '';
 				while(element = firstXPath.shift()) {
 					child = child + '/' + element;
 				}
-
+				*/
+				var parent = '';
+				var child = '';
+				var i = 0;
+				while(firstXPath[i] == secondXPath[i]) {
+					parent = parent + firstXPath[i];
+					i++;
+				}
+				i++;
+				while(i < firstXPath.length) {
+					child = child + firstXPath[i];
+					i++;
+				}
+				console.log(parent);
+				console.log(child);
 				var k = 1;
-				while((node = document.evaluate(parent + '/' + currentNode + '[' + k + ']' + child, document.body, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue) != null)
+				//while((node = document.evaluate(parent + '/' + currentNode + '[' + k + ']' + child, document.body, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue) != null)
+				while((node = document.evaluate(parent + k + child, document.body, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue) != null)
 				{
 					if(data.length < k) {
 						row = {};

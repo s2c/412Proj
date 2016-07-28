@@ -32,12 +32,6 @@ app.controller('tagClassChooseCtrl', function ($scope, $rootScope, $window) {
     		chrome.tabs.executeScript(null, {file: "app/contentScript/vipsHighlightSiblingBlocks.js"});
     	});
     };
-
-    $scope.extractNames = function(){
-        chrome.tabs.executeScript(null, {file: "lib/FileSaver.min.js"}, function() {
-            chrome.tabs.executeScript(null, {file: "app/contentScript/extractNames.js"});
-        });
-    };
 });
 
 app.config(['$compileProvider',

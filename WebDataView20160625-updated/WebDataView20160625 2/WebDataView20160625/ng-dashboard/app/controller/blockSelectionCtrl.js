@@ -35,4 +35,8 @@ app.controller('blockSelectionCtrl', function ($scope, $rootScope, $window) {
 			});
 		});
 	};
+
+	$scope.vips = function() {
+		chrome.tabs.executeScript(null, {file: "app/contentScript/test.js"});
+	};
 });
